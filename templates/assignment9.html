@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %} Assignment 9 {%endblock%}
+
+{% block content %}
+    <h1> Welcome to my page for assignment 9  </h1>
+    <h2>Search Form</h2>
+    <form action="/assignment9" method="GET"> 
+        Name: <input name="name" type="text"> 
+        <input type="submit" value="Search">
+    </form>
+
+    {% if Name %}  
+        <h3>Result: {{ session.result }}</h3>
+    {% endif %}
+
+    {% if Users %}
+        <h3>Result:
+            {% for key,value in Users.items() %}
+            <ul>
+                <li> {{ key }}, {{ value }}</li>
+            </ul>
+            {% endfor %}
+        </h3>
+    {% endif %}
+
+    {% if session.username %}
+
+    {% else %}
+        <h2>Registration Form</h2>
+        <form action="/assignment9" method="POST">
+            Username: <input type="text" name="username">
+            Password: <input type="password" name="password">
+            <input type="submit" value="Register">
+        </form>
+    {% endif %}
+{% endblock %}
